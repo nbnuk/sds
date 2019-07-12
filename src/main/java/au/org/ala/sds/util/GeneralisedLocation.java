@@ -225,6 +225,10 @@ public class GeneralisedLocation {
             return 0;
         } else if (generalisation.equalsIgnoreCase("WITHHOLD")) {
             return Integer.MAX_VALUE;
+        } else if (generalisation.equalsIgnoreCase("100km")) {
+            return 100000;
+        } else if (generalisation.equalsIgnoreCase("50km")) {
+            return 50000;
         } else if (generalisation.equalsIgnoreCase("10km")) {
             return 10000;
         } else if (generalisation.equalsIgnoreCase("1km")) {

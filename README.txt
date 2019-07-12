@@ -24,7 +24,7 @@ defined here:
 https://sds.ala.org.au/sensitivity-categories.xml
 
 Generalisation (optional) - how to generalise the coordinates, mainly used for conservation species. Supported values include
-WITHHOLD, 10km, 1km, 100m.  If this is supplied at the list level it will apply to all species. If it has not been supplied
+WITHHOLD, 100km, 50km, 10km, 2km, 1km, 100m.  If this is supplied at the list level it will apply to all species. If it has not been supplied
  at the list level it must be supplied as a property for each record.
 
 SDS Type - either PLANT_PEST or CONSERVATION.
