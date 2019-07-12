@@ -41,15 +41,45 @@ public class SensitiveDataServiceTest {
     @BeforeClass
     public static void runOnce() throws Exception {
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        System.setProperty("sds.config.file", "/data/sds/config/sds-config.properties");
         System.out.println(Configuration.getInstance().getNameMatchingIndex());
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //The URI to the test list - only contains entries that are used in one or more the the tests
-        String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
+        String uri = "https://sds.nbnatlas.org/sensitive-species-data.xml";
+        //String uri = "file:///data/sds/config/sensitive-species.xml"; //nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(uri, nameSearcher, true);
         sds = new SensitiveDataService();
     }
 
+
+    @Test
+    public void testNBNSpeciesIdedAtHigherTaxon(){
+        Map<String,String> props = new HashMap<String,String>();
+        String latitude = "60.276771";
+        String longitude = "-1.112539";
+        //props.put("scientificName", "Cetartiodactyla");
+        //props.put("scientificName", "Vespertilionidae");
+        //props.put("scientificName", "Plecotus");
+        props.put("lsid", "NHMSYS0000530170");
+        props.put("eventDate","2013-04-09");
+        props.put("recordedBy", "Natasha Carter");
+        props.put("decimalLatitude", "60.276771");
+        props.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
+        props.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
+
+        //ValidationOutcome outcome = sds.testMapDetails(finder, props, "Cetartiodactyla");
+        ValidationOutcome outcome = sds.testMapDetails(finder, props, null, "NHMSYS0000530170");
+        //ValidationOutcome outcome = sds.testMapDetails(finder, props, "Aquila chrysaetos");
+        //ValidationOutcome outcome = sds.testMapDetails(finder, props, "Plecotus");
+        assertTrue(outcome.isValid());
+        assertTrue(outcome.isLoadable());
+
+        Map<String, Object> result = outcome.getResult();
+        assertNotNull(result);
+        assertTrue(((Map)result.get("originalSensitiveValues")).size() >0);
+    }
+
+    /*
     @Test
     public void testFlagCases(){
         //PBC7
@@ -160,4 +190,5 @@ public class SensitiveDataServiceTest {
         assertTrue(((Map)result.get("originalSensitiveValues")).size() >0);
         assertTrue(outcome.getReport().getMessages().get(0).getMessageText().contains("potentially of plant biosecurity concern, are held in Australian reference collections."));
     }
+    */
 }

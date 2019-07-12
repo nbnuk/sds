@@ -63,8 +63,16 @@ public class SensitiveTaxonStore implements Serializable {
                     NameSearchResult accepted = getAcceptedNameFromSynonym(match);
                     if (accepted != null) {
                         String acceptedName = accepted.getRankClassification().getScientificName();
-                        logger.info("Sensitive species '" + st.getName() + "' is not accepted name - using '" + acceptedName + "'");
-                        SensitiveTaxon acceptedTaxon = findByExactMatch(acceptedName);
+                        //logger.info("Sensitive species '" + st.getName() + "' is not accepted name - using '" + acceptedName + "'");
+                        //SensitiveTaxon acceptedTaxon = findByExactMatch(acceptedName);
+                        //NBN: the problem with the above logic, is that the accepted scientificName can be the same as the synonym (if the synonym is e.g. the naked name)
+                        String acceptedLsid = accepted.getLsid();
+                        st.setLsid(acceptedLsid);
+                        logger.info("Sensitive species '" + st.getName() + "' is not accepted name - using name for lsid '" + acceptedLsid + "'");
+                        SensitiveTaxon acceptedTaxon = findByLsid(acceptedLsid);
+                        if (acceptedTaxon == null) {
+                            acceptedTaxon = findByExactMatch(acceptedName); //revert to this
+                        }
                         if (acceptedTaxon == null) {
                             acceptedTaxon = new SensitiveTaxon(acceptedName, StringUtils.contains(acceptedName, ' ') ? RankType.SPECIES : RankType.GENUS);
                             acceptedTaxon.setLsid(accepted.getLsid());
