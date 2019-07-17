@@ -89,30 +89,32 @@ public class SensitiveSpeciesXmlBuilder {
                 }
                 instances = new Element("instances");
                 sensitiveSpecies = new Element("sensitiveSpecies");
-                sensitiveSpecies.setAttribute("name", item.getName());
+                sensitiveSpecies.setAttribute("name", item.getName() != null ? item.getName() : "");
                 sensitiveSpecies.setAttribute("family", item.getFamily() != null ? item.getFamily() : "");
                 String rank = Rank.UNRANKED.toString().toUpperCase();
                 try {
-                    ParsedName pn = parser.parse(item.getName());
+                    ParsedName pn = parser.parse(item.getName() != null ? item.getName() : "");
                     if(pn != null && pn.getRank() != null) {
                         rank = pn.getRank().toString().toUpperCase();
                     }
                 } catch(Exception e){
-                    logger.error("Unable to get rank for " + item.getName(), e);
+                    logger.error("Unable to get rank for " + (item.getName() != null ? item.getName() : "<null>"), e);
                 }
-                sensitiveSpecies.setAttribute("guid", item.getGuid());
-                sensitiveSpecies.setAttribute("rank", rank);
+                sensitiveSpecies.setAttribute("guid", item.getGuid() != null ? item.getGuid() : "");
+                sensitiveSpecies.setAttribute("rank", rank != null ? rank : "");
                 String commonName = item.getKVPValue(item.commonNameLabels);
                 sensitiveSpecies.setAttribute("commonName", commonName != null ? commonName : "");
                 doc.getRootElement().addContent(sensitiveSpecies);
-                currentGuid = item.getGuid();
+                currentGuid = (item.getGuid() != null ? item.getGuid() : "");
                 resources.clear();
             }
 
             //NQ 2014-03-14 - Ensure that each data resource only has one inclusion for each species
-            if(!resources.contains(item.getDataResourceUid())){
-                resources.add(item.getDataResourceUid());
-                addInstanceInformation(sdsLists, item,instances);
+            if (item.getDataResourceUid() != null) {
+                if (!resources.contains(item.getDataResourceUid())) {
+                    resources.add(item.getDataResourceUid());
+                    addInstanceInformation(sdsLists, item, instances);
+                }
             }
         }
 
@@ -196,6 +198,9 @@ public class SensitiveSpeciesXmlBuilder {
             String generalisation = item.getKVPValue("generalisation");
             if(generalisation == null) {
                 generalisation = list.getGeneralisation();
+                if (generalisation == null) {
+                    generalisation = "Not set";
+                }
             }
             instance.setAttribute("generalisation", generalisation);
         } else  {
