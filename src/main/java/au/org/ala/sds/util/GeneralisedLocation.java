@@ -121,7 +121,7 @@ public class GeneralisedLocation {
             generalisedLongitude = "";
             description = MessageFactory.getMessageText(MessageFactory.LOCATION_WITHHELD);
         } else if (this.locationGeneralisation.equalsIgnoreCase("100km") || this.locationGeneralisation.equalsIgnoreCase("50km")) {
-            generaliseCoordinates(1);
+            generaliseCoordinates(0);
             if (this.locationGeneralisation.equalsIgnoreCase("50km")){
                 generalisationToApplyInMetres = "50000";
             } else {
