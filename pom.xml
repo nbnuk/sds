@@ -55,14 +55,8 @@
         </dependency>
         <dependency>
             <groupId>au.org.ala</groupId>
-            <artifactId>ala-name-matching</artifactId>
-            <version>3.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>ala-name-matching-search</artifactId>
+            <version>4.2</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
