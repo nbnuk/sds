@@ -1,4 +1,4 @@
-# sds   [![Build Status](https://travis-ci.com/AtlasOfLivingAustralia/sds.svg?branch#master)](https://travis-ci.com/AtlasOfLivingAustralia/sds)
+# sds   [![Build Status](https://travis-ci.com/AtlasOfLivingAustralia/sds.svg?branch=master)](https://app.travis-ci.com/github/AtlasOfLivingAustralia/sds)
 
 
 The sensitive data service manages sensitivity concerns in the conservation and biosecurity areas.
@@ -65,7 +65,7 @@ value for the property is http://spatial.ala.org.au/layers-service/intersect/
 to sensitive species are correctly determined. This property is only used by the Tests and sds-webapp2.  When you construct
 your sensitive data service you will need to an ALASearcher to be used:
 au.org.ala.sds.SensitiveSpeciesFinderFactory#getSensitiveSpeciesFinder(String dataUrl, ALANameSearcher nameSearcher).  The
-default value for this is /data/lucene/namematching_v13 which should be overridden with the correct value.
+default value for this is /data/lucene/namematching which can either be used as a link or be overridden with the correct value.
 
  * list-url - the URL to the list tool that is used to generate the species xml file, by default https://lists.ala.org.au
 

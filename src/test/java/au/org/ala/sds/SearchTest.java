@@ -54,7 +54,7 @@ public class SearchTest {
 
     @Test
     public void lookupMitchellsByLsid() {
-        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:0217f06f-664c-4c64-bc59-1b54650fa23d");
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("https://biodiversity.org.au/afd/taxa/5815e99d-01cd-4a92-99ba-36f480c4834d");
         assertNotNull(ss);
         assertEquals("Lophochroa leadbeateri", ss.getTaxonName());
     }
