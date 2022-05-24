@@ -189,6 +189,10 @@ public class GeneraliseTest {
 
         assertTrue(outcome.isValid());
         assertTrue(outcome.isSensitive());
+        // Has two instances but only one valid for location
+        assertNotNull(outcome.getInstances());
+        assertEquals(1, outcome.getInstances().size());
+        assertEquals("New South Wales", outcome.getInstances().get(0).getZone().getName());
     }
 
     /**
@@ -322,7 +326,7 @@ public class GeneraliseTest {
      */
     @Test
     public void findSpeciesByLsid() {
-        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:0217f06f-664c-4c64-bc59-1b54650fa23d");
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("https://biodiversity.org.au/afd/taxa/5815e99d-01cd-4a92-99ba-36f480c4834d");
         assertNotNull(ss);
         String latitude = "-33.630629";    // NSW
         String longitude = "150.441284";

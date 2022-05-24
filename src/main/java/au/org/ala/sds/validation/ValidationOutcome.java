@@ -3,6 +3,9 @@
  */
 package au.org.ala.sds.validation;
 
+import au.org.ala.sds.model.SensitivityInstance;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,6 +18,7 @@ public class ValidationOutcome {
     private boolean sensitive = false;
     private boolean loadable = false;
     private boolean controlledAccess = false;
+    private List<SensitivityInstance> instances;
     private ValidationReport report;
     private Map<String, Object> result;
 
@@ -68,6 +72,14 @@ public class ValidationOutcome {
         this.controlledAccess = controlledAccess;
     }
 
+    public List<SensitivityInstance> getInstances() {
+        return this.instances;
+    }
+
+    public void setInstances(List<SensitivityInstance> instances) {
+        this.instances = instances;
+    }
+
     public boolean isControlledAccess(){
         return this.controlledAccess;
     }
@@ -86,6 +98,7 @@ public class ValidationOutcome {
                 "valid=" + valid +
                 ", sensitive=" + sensitive +
                 ", loadable=" + loadable +
+                ", instances=" + instances +
                 ", report=" + report +
                 ", result=" + result +
                 '}';

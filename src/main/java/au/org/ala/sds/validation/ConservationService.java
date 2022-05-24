@@ -71,6 +71,9 @@ public class ConservationService implements ValidationService {
         GeneralisedLocation gl = GeneralisedLocationFactory.getGeneralisedLocation(latitude, longitude, instances, zones);
         ValidationOutcome outcome = new ValidationOutcome(report);
 
+        // Specify instances
+        outcome.setInstances(instances);
+
         // Assemble result map
         Map<String, Object> results = new HashMap<String, Object>();
         Map<String, String> originalSensitiveValues = new HashMap<String, String>();
