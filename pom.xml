@@ -3,20 +3,20 @@
     <parent>
         <groupId>au.org.ala</groupId>
         <artifactId>ala-parent-pom</artifactId>
-        <version>5</version>
+        <version>14</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>au.org.ala</groupId>
     <artifactId>sds</artifactId>
-    <version>1.4.6-NBN</version>
+    <version>1.4.7-NBN</version>
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/AtlasOfLivingAustralia/sds/issues</url>
     </issueManagement>
     <ciManagement>
         <system>Travis</system>
-        <url>http://travis-ci.org/AtlasOfLivingAustralia/sds/</url>
+        <url>http://travis-ci.com/AtlasOfLivingAustralia/sds/</url>
     </ciManagement>
     <name>Sensitive Species Lookup API</name>
     <description>Routines to check whether a species is sensitive and to apply data generalisation.</description>
@@ -64,8 +64,8 @@
         </dependency>
         <dependency>
             <groupId>au.org.ala</groupId>
-            <artifactId>ala-name-matching</artifactId>
-            <version>3.4-NBN</version>
+            <artifactId>ala-name-matching-search</artifactId>
+            <version>4.2-NBN-0-0-1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

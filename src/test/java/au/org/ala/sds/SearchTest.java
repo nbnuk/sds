@@ -17,6 +17,7 @@ package au.org.ala.sds;
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.model.SensitiveTaxon;
 import au.org.ala.sds.util.Configuration;
+import au.org.ala.sds.util.TestUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class SearchTest {
 
     @BeforeClass
     public static void runOnce() throws Exception {
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(uri, nameSearcher, true);
@@ -53,7 +54,7 @@ public class SearchTest {
 
     @Test
     public void lookupMitchellsByLsid() {
-        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:0217f06f-664c-4c64-bc59-1b54650fa23d");
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("https://biodiversity.org.au/afd/taxa/5815e99d-01cd-4a92-99ba-36f480c4834d");
         assertNotNull(ss);
         assertEquals("Lophochroa leadbeateri", ss.getTaxonName());
     }

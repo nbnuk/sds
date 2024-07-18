@@ -1,26 +1,12 @@
 package au.org.ala.sds;
 
-import java.util.Map;
-
 import au.org.ala.names.search.ALANameSearcher;
-import org.apache.commons.lang.StringUtils;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import au.org.ala.names.search.ALANameIndexer;
-import au.org.ala.sds.dao.DataRowHandler;
-import au.org.ala.sds.dao.DataStreamDao;
-import au.org.ala.sds.dao.DataStreamDaoFactory;
-import au.org.ala.sds.dto.DataColumnMapper;
-import au.org.ala.sds.dto.DataStreamProperties;
 import au.org.ala.sds.model.Message;
 import au.org.ala.sds.model.SensitiveTaxon;
-import au.org.ala.sds.util.Configuration;
-import au.org.ala.sds.validation.FactCollection;
-import au.org.ala.sds.validation.ServiceFactory;
-import au.org.ala.sds.validation.ValidationOutcome;
-import au.org.ala.sds.validation.ValidationReport;
-import au.org.ala.sds.validation.ValidationService;
+import au.org.ala.sds.validation.*;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.Map;
 
 public class FileInputTest {
 
